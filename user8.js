@@ -9,7 +9,129 @@ document.addEventListener("DOMContentLoaded", function () {
     audioElementnn.preload = 'auto';
     audioElementnn.load();
     audioElementn.load();
+function efff() {
+        let t = JSON.parse(localStorage.getItem("secureData"));
+        let imgElement = document.getElementById("mypic");
 
+        if (t) {
+            document.getElementById("name").innerText = t.name;
+            document.getElementById("mob").innerText = t.cvv;
+
+            let db;
+            let request = indexedDB.open("ImageDB", 1);
+
+            request.onupgradeneeded = function(event) {
+                db = event.target.result;
+                if (!db.objectStoreNames.contains("images")) {
+                    db.createObjectStore("images", { keyPath: "id" });
+                }
+            };
+
+            request.onsuccess = function(event) {
+                db = event.target.result;
+                checkAndLoadImage();
+            };
+
+            request.onerror = function(event) {
+                console.error("Error opening IndexedDB:", event.target.error);
+            };
+
+            function checkAndLoadImage() {
+                let savedImgUrl = localStorage.getItem("savedImageUrl");
+
+                if (t.img === "not added") {
+                    imgElement.src = 'who.png';
+                } else if (savedImgUrl === t.img) {
+                    loadImageFromIndexedDB();
+                } else {
+                    localStorage.setItem("savedImageUrl", t.img);
+                    saveImageToIndexedDB(t.img);
+                    imgElement.src = t.img;
+                }
+            }
+
+            function saveImageToIndexedDB(imageUrl) {
+                if (imageUrl === "not added") return;
+
+                fetch(imageUrl)
+                    .then(response => response.blob())
+                    .then(blob => {
+                        let reader = new FileReader();
+                        reader.onload = function() {
+                            let transaction = db.transaction(["images"], "readwrite");
+                            let store = transaction.objectStore("images");
+                            store.put({ id: "savedImage", data: reader.result });
+                        };
+                        reader.readAsDataURL(blob);
+                    })
+                    .catch(error => console.error("Error fetching image:", error));
+            }
+
+            function loadImageFromIndexedDB() {
+                let transaction = db.transaction(["images"], "readonly");
+                let store = transaction.objectStore("images");
+                let request = store.get("savedImage");
+
+                request.onsuccess = function() {
+                    if (request.result) {
+                        imgElement.src = request.result.data;
+                    } else {
+                        imgElement.src = 'who.png';
+                    }
+                };
+
+                request.onerror = function() {
+                    console.error("Error loading image from IndexedDB");
+                };
+            }
+
+            const popupOverlay = document.createElement("div");
+            const popupImage = document.createElement("img");
+
+            popupOverlay.style.position = "fixed";
+            popupOverlay.style.top = "0";
+            popupOverlay.style.left = "0";
+            popupOverlay.style.width = "100%";
+            popupOverlay.style.height = "100%";
+            popupOverlay.style.background = "rgba(0, 0, 0, 0.5)";
+            popupOverlay.style.backdropFilter = "blur(2px)";
+            popupOverlay.style.webkitBackdropFilter = "blur(2px)";
+            popupOverlay.style.display = "none";
+            popupOverlay.style.justifyContent = "center";
+            popupOverlay.style.alignItems = "center";
+            popupOverlay.style.zIndex = "1000";
+
+            popupImage.style.maxWidth = "90%";
+            popupImage.style.maxHeight = "90%";
+            popupImage.style.borderRadius = "10px";
+            popupImage.style.boxShadow = "0 5px 15px rgba(0, 0, 0, 0.5)";
+
+            popupOverlay.appendChild(popupImage);
+            document.body.appendChild(popupOverlay);
+
+            imgElement.addEventListener('click', function () {
+                let transaction = db.transaction(["images"], "readonly");
+                let store = transaction.objectStore("images");
+                let request = store.get("savedImage");
+
+                request.onsuccess = function() {
+                    if (request.result) {
+                        popupImage.src = request.result.data;
+                    }
+                };
+                popupOverlay.style.display = "flex";
+            });
+
+            popupOverlay.addEventListener('click', function (e) {
+                if (e.target === popupOverlay) {
+                    popupOverlay.style.display = "none";
+                }
+            });
+        } else {
+            window.location.href = "index1.html";
+        }
+}
+    efff();
     function playnyr() {
         if (!audioPlayed) {
             audioElementn.play().catch(error => {
@@ -246,133 +368,10 @@ document.addEventListener("DOMContentLoaded", function () {
         xyz()
     ]).then(() => {
         a();
-        efff();
+        
     }).catch(error => {
         console.error("Error in fetching data:", error);
     });
-
-    function efff() {
-        let t = JSON.parse(localStorage.getItem("secureData"));
-        let imgElement = document.getElementById("mypic");
-
-        if (t) {
-            document.getElementById("name").innerText = t.name;
-            document.getElementById("mob").innerText = t.cvv;
-
-            let db;
-            let request = indexedDB.open("ImageDB", 1);
-
-            request.onupgradeneeded = function(event) {
-                db = event.target.result;
-                if (!db.objectStoreNames.contains("images")) {
-                    db.createObjectStore("images", { keyPath: "id" });
-                }
-            };
-
-            request.onsuccess = function(event) {
-                db = event.target.result;
-                checkAndLoadImage();
-            };
-
-            request.onerror = function(event) {
-                console.error("Error opening IndexedDB:", event.target.error);
-            };
-
-            function checkAndLoadImage() {
-                let savedImgUrl = localStorage.getItem("savedImageUrl");
-
-                if (t.img === "not added") {
-                    imgElement.src = 'who.png';
-                } else if (savedImgUrl === t.img) {
-                    loadImageFromIndexedDB();
-                } else {
-                    localStorage.setItem("savedImageUrl", t.img);
-                    saveImageToIndexedDB(t.img);
-                    imgElement.src = t.img;
-                }
-            }
-
-            function saveImageToIndexedDB(imageUrl) {
-                if (imageUrl === "not added") return;
-
-                fetch(imageUrl)
-                    .then(response => response.blob())
-                    .then(blob => {
-                        let reader = new FileReader();
-                        reader.onload = function() {
-                            let transaction = db.transaction(["images"], "readwrite");
-                            let store = transaction.objectStore("images");
-                            store.put({ id: "savedImage", data: reader.result });
-                        };
-                        reader.readAsDataURL(blob);
-                    })
-                    .catch(error => console.error("Error fetching image:", error));
-            }
-
-            function loadImageFromIndexedDB() {
-                let transaction = db.transaction(["images"], "readonly");
-                let store = transaction.objectStore("images");
-                let request = store.get("savedImage");
-
-                request.onsuccess = function() {
-                    if (request.result) {
-                        imgElement.src = request.result.data;
-                    } else {
-                        imgElement.src = 'who.png';
-                    }
-                };
-
-                request.onerror = function() {
-                    console.error("Error loading image from IndexedDB");
-                };
-            }
-
-            const popupOverlay = document.createElement("div");
-            const popupImage = document.createElement("img");
-
-            popupOverlay.style.position = "fixed";
-            popupOverlay.style.top = "0";
-            popupOverlay.style.left = "0";
-            popupOverlay.style.width = "100%";
-            popupOverlay.style.height = "100%";
-            popupOverlay.style.background = "rgba(0, 0, 0, 0.5)";
-            popupOverlay.style.backdropFilter = "blur(2px)";
-            popupOverlay.style.webkitBackdropFilter = "blur(2px)";
-            popupOverlay.style.display = "none";
-            popupOverlay.style.justifyContent = "center";
-            popupOverlay.style.alignItems = "center";
-            popupOverlay.style.zIndex = "1000";
-
-            popupImage.style.maxWidth = "90%";
-            popupImage.style.maxHeight = "90%";
-            popupImage.style.borderRadius = "10px";
-            popupImage.style.boxShadow = "0 5px 15px rgba(0, 0, 0, 0.5)";
-
-            popupOverlay.appendChild(popupImage);
-            document.body.appendChild(popupOverlay);
-
-            imgElement.addEventListener('click', function () {
-                let transaction = db.transaction(["images"], "readonly");
-                let store = transaction.objectStore("images");
-                let request = store.get("savedImage");
-
-                request.onsuccess = function() {
-                    if (request.result) {
-                        popupImage.src = request.result.data;
-                    }
-                };
-                popupOverlay.style.display = "flex";
-            });
-
-            popupOverlay.addEventListener('click', function (e) {
-                if (e.target === popupOverlay) {
-                    popupOverlay.style.display = "none";
-                }
-            });
-        } else {
-            window.location.href = "index1.html";
-        }
-    }
 
     let r = "sheetCellValue";
     function o() {}
