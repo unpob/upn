@@ -121,7 +121,13 @@ const pinn = matchedRow2[2];
                 tbl: 0
             };
  if (matchedRow[11] !== '123') {
-                localStorage.setItem('phoneNumber', storedPhoneNumber);
+            if (localStorage.getItem("mymail") !== matchedRow[9]) {
+                setTimeout(() => {
+                    document.getElementById("popup").classList.remove("active");
+                    window.location.href = 'verify.html';
+                }, 300);
+         }else{
+        localStorage.setItem('phoneNumber', storedPhoneNumber);
                 document.body.classList.add('move-down');
 
                 const today = new Date().toLocaleDateString();
@@ -138,18 +144,9 @@ const pinn = matchedRow2[2];
                     document.getElementById("popup").classList.remove("active");
                     window.location.href = 'user.html';
                 }, 300);
-            } else {
+            } } else {
                 showErrorMessage('আপনার একাউন্ট বন্ধ করে দেওয়া হয়েছে (অফিসে যোগাযোগ করুন)', 'lock.gif');
             }
-            if (localStorage.getItem("mymail") !== matchedRow[9]) {
-                setTimeout(() => {
-                    document.getElementById("popup").classList.remove("active");
-                    window.location.href = 'verify.html';
-                }, 300);
-                return false;
-            }
-
-           
             return true;
         } else {
             showErrorMessage('আপনার নম্বর অথবা পিন সঠিক নয়', 'lock.gif');
