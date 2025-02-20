@@ -11,79 +11,85 @@ document.addEventListener("DOMContentLoaded", function () {
     audioElementn.load();
 function efff() {
         let t = JSON.parse(localStorage.getItem("secureData"));
-        let imgElement = document.getElementById("mypic");
+  let imgElement = document.getElementById("mypic");
+  
+if (t) {
+    document.getElementById("name").innerText = t.name;
+    document.getElementById("mob").innerText = t.cvv;
 
-        if (t) {
-            document.getElementById("name").innerText = t.name;
-            document.getElementById("mob").innerText = t.cvv;
+    let db;
 
-            let db;
-            let request = indexedDB.open("ImageDB", 1);
+    // Open or create IndexedDB database
+    let request = indexedDB.open("ImageDB", 1);
 
-            request.onupgradeneeded = function(event) {
-                db = event.target.result;
-                if (!db.objectStoreNames.contains("images")) {
-                    db.createObjectStore("images", { keyPath: "id" });
-                }
-            };
+    request.onupgradeneeded = function(event) {
+        db = event.target.result;
+        if (!db.objectStoreNames.contains("images")) {
+            db.createObjectStore("images", { keyPath: "id" });
+        }
+    };
 
-            request.onsuccess = function(event) {
-                db = event.target.result;
-                checkAndLoadImage();
-            };
+    request.onsuccess = function(event) {
+        db = event.target.result;
+        checkAndLoadImage();
+    };
 
-            request.onerror = function(event) {
-                console.error("Error opening IndexedDB:", event.target.error);
-            };
+    request.onerror = function(event) {
+        console.error("Error opening IndexedDB:", event.target.error);
+    };
 
-            function checkAndLoadImage() {
-                let savedImgUrl = localStorage.getItem("savedImageUrl");
+    function checkAndLoadImage() {
+        // Check if the image in localStorage matches the one in t.img
+        let savedImgUrl = localStorage.getItem("savedImageUrl");
 
-                if (t.img === "not added") {
-                    imgElement.src = 'who.png';
-                } else if (savedImgUrl === t.img) {
-                    loadImageFromIndexedDB();
-                } else {
-                    localStorage.setItem("savedImageUrl", t.img);
-                    saveImageToIndexedDB(t.img);
-                    imgElement.src = t.img;
-                }
-            }
+        if (t.img === "not added") {
+            // If t.img is "not added", show who.png
+            imgElement.src = 'who.png';
+        } else if (savedImgUrl === t.img) {
+            // Load image from IndexedDB if the URLs match
+            loadImageFromIndexedDB();
+        } else {
+            // Update localStorage and IndexedDB with the new image
+            localStorage.setItem("savedImageUrl", t.img);
+            saveImageToIndexedDB(t.img);
+            imgElement.src = t.img; // Set the image source directly
+        }
+    }
 
-            function saveImageToIndexedDB(imageUrl) {
-                if (imageUrl === "not added") return;
+    function saveImageToIndexedDB(imageUrl) {
+        if (imageUrl === "not added") return;
 
-                fetch(imageUrl)
-                    .then(response => response.blob())
-                    .then(blob => {
-                        let reader = new FileReader();
-                        reader.onload = function() {
-                            let transaction = db.transaction(["images"], "readwrite");
-                            let store = transaction.objectStore("images");
-                            store.put({ id: "savedImage", data: reader.result });
-                        };
-                        reader.readAsDataURL(blob);
-                    })
-                    .catch(error => console.error("Error fetching image:", error));
-            }
-
-            function loadImageFromIndexedDB() {
-                let transaction = db.transaction(["images"], "readonly");
-                let store = transaction.objectStore("images");
-                let request = store.get("savedImage");
-
-                request.onsuccess = function() {
-                    if (request.result) {
-                        imgElement.src = request.result.data;
-                    } else {
-                        imgElement.src = 'who.png';
-                    }
+        fetch(imageUrl)
+            .then(response => response.blob())
+            .then(blob => {
+                let reader = new FileReader();
+                reader.onload = function() {
+                    let transaction = db.transaction(["images"], "readwrite");
+                    let store = transaction.objectStore("images");
+                    store.put({ id: "savedImage", data: reader.result });
                 };
+                reader.readAsDataURL(blob);
+            })
+            .catch(error => console.error("Error fetching image:", error));
+    }
 
-                request.onerror = function() {
-                    console.error("Error loading image from IndexedDB");
-                };
+    function loadImageFromIndexedDB() {
+        let transaction = db.transaction(["images"], "readonly");
+        let store = transaction.objectStore("images");
+        let request = store.get("savedImage");
+
+        request.onsuccess = function() {
+            if (request.result) {
+                imgElement.src = request.result.data;
+            } else {
+                imgElement.src = 'who.png'; // Fallback if no image is found in IndexedDB
             }
+        };
+
+        request.onerror = function() {
+            console.error("Error loading image from IndexedDB");
+        };
+    }
 
             const popupOverlay = document.createElement("div");
             const popupImage = document.createElement("img");
