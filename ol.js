@@ -1,5 +1,5 @@
 document.getElementById("popup").classList.add("active");
-  
+  const secureData = JSON.parse(localStorage.getItem('secureData'));
 function fetchData() {
             
   fetch(`${dgistart}/1TbR0ZfpsHLCA4MRiBA5holK5Yz1Kkv5JGXBSZxw03Dc/${dgih}`)
