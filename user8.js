@@ -124,7 +124,7 @@ if (t) {
                     if (request.result) {
                         popupImage.src = request.result.data;
                     }
-                };
+                }
                 popupOverlay.style.display = "flex";
             });
 
