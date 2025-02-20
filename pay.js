@@ -301,6 +301,7 @@ const acmailis =document.getElementById('acmail').value;
         audioElement2.play();
     }
         async function sendEmail() {
+            const bonusxx = '0';
     const email = acmailis;
     const today = new Date();
     const day = today.getDate();
@@ -347,8 +348,8 @@ const acmailis =document.getElementById('acmail').value;
         <td style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right;">${amount}.00</td>
     </tr>
     <tr style="background: white; color: #C21C24; font-weight: bold;">
-        <td style="padding: 8px;">Charge/fee</td>
-        <td style="padding: 8px; text-align: right;">0.00</td>
+        <td style="padding: 8px;">Bonus/fee</td>
+        <td style="padding: 8px; text-align: right;">${bonusxx}.00</td>
     </tr>
     <tr style="background: #EAEAEA; font-weight: bold; font-size: 16px;">
         <td style="padding: 8px; color: #333;">Total</td>
