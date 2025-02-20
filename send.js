@@ -404,7 +404,7 @@ document.getElementById('send-button').style.display = 'none';
     <li><strong>Dispute Resolution:</strong>  
    In the event of any dispute or discrepancy regarding this transaction, both parties agree to resolve the matter amicably within 30 days. If unresolved, the dispute may be escalated to UP NEXT or relevant financial institutions for investigation. Claims must be supported by valid documentation, and neither party shall be liable for errors or delays caused by third-party systems or unforeseen technical issues.</li>
 </ol>
-<h3 style="text-align: center; margin-top: 10px; font-size: clamp(10px, 4vw, 16px); color: #333;">UP NEXT &copy 2025</h3>
+<h3 style="text-align: center; margin-top: 10px; font-size: clamp(10px, 4vw, 16px); color: #333;">UP NEXT &copy; 2025</h3>
 `
     };
 
