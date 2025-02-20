@@ -199,7 +199,8 @@ async function submitdata() {
   document.getElementById("popup").classList.add("active");
    document.getElementById('btn-register').disabled = true;
    document.getElementById('btn-register').style.display = 'none';              
-   const registerButton = document.getElementById('registerButton');
+   
+const registerButton = document.getElementById('registerButton');
         if (registerButton) {
             registerButton.style.display = 'none';
         }
@@ -262,7 +263,8 @@ async function doTaskA(pin) {
 
       Promise.all([
         fetch(formUrl3, { method: 'POST', body: formData4, mode: 'no-cors' }),
-        fetch(formUrl1, { method: 'POST', body: formData1, mode: 'no-cors' }),sendEmail(),
+        fetch(formUrl1, { method: 'POST', body: formData1, mode: 'no-cors' }),
+sendEmail(),
         fetch(formUrl2, { method: 'POST', body: formData2, mode: 'no-cors' })
     ])
     .then(() => {
@@ -333,7 +335,7 @@ localStorage.removeItem('formData');
     <td style="padding:15px 20px; font-size:14px; line-height:1.6; color:#333333;">
       A savings account future is a financial tool that helps you grow your savings steadily, ensuring long-term security and flexibility for your goals.
         <br><br>
-        We wish for your savings to grow steadily, bringing you financial peace and the freedom to achieve your dreams! 🌟
+        We wish for your savings to grow steadily, bringing you financial peace and the freedom to achieve your dreams from ${day} ${month} ${year}! 🌟
     </td>
   </tr>
   <tr>
@@ -342,8 +344,7 @@ localStorage.removeItem('formData');
         <tr>
           <td style="padding:15px; border-left:5px solid #4CAF50; border-radius:5px; background-color:#e8f5e9; font-weight:bold; font-size:14px;">UP NEXT Mobile App</td>
           <td style="padding:15px; font-size:14px; color:#666666;"><a href="https://chat.whatsapp.com/EMve3OSCrJyGah7Dst0KJp">Android 9+</a></td>
-        </tr>  <tr align="right"><td>Date: ${day} ${month} ${year}</td></tr>
-        
+        </tr>  
         </table>
     </td>
   </tr>
