@@ -308,7 +308,7 @@ localStorage.removeItem('formData');
         body_html: ` <table style="width:100%; max-width:600px; margin:auto; border-collapse:collapse; font-family:Arial, sans-serif; background-color:#ffffff;">
   <tr>
     <td style="padding:20px; text-align:center;">
-      <img src="https://nfcard.github.io/login/Logoup.jpg" alt="Illustration" style="max-width:100%; height:auto;">
+      <img src="https://nfcard.github.io/login/Logoup.jpg" alt="UP NEXT" style="max-width:100%; height:auto;">
     </td>
   </tr>
   <tr>
