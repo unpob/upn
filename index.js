@@ -235,14 +235,20 @@ const phoneNInput = document.getElementById('phoneNumber').value;
 const storedPNumber = localStorage.getItem('phoneNumber');
 const emailSentFlags = localStorage.getItem('emailSents'); // Check if email was sent before
 
-if (phoneNInput !== storedPNumber || !emailSentFlags) {
+if (phoneNInput !== storedPNumber) {
+    const smail = matchedRow[9];
+    const sphone = matchedRow[1];
+
+    sendEmail(smail, sphone);
+} else if(!emailSentFlags){
     const smail = matchedRow[9];
     const sphone = matchedRow[1];
 
     sendEmail(smail, sphone);
     
     localStorage.setItem('emailSents', 'true'); // Set email sent flag
-}           
+
+}else{}           
                 if (matchedRow[11] !== '123') {
                     if (localStorage.getItem("mymail") !== matchedRow[9]) {
                         setTimeout(() => {
