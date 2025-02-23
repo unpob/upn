@@ -300,7 +300,7 @@ document.getElementById('send-button').style.display = 'none';
                 fetchData();
                 document.getElementById('send-button').style.display = 'none';
                 setTimeout(() => {
-                        window.location.replace = "user.html";
+                     window.location.replace('user.html');
                     }, 1500);// Hide button after successful submission
       })
     .catch(error => {
