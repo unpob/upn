@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', async function () {
           document.getElementById('pin').focus();
 }
     } else {
-        window.location.href = "verify.html";
+        window.location.replace = "verify.html";
     }
 let audioPlayed = false;
     const audioElement = new Audio('nyr.mp3');
@@ -70,8 +70,7 @@ async function doTaskA(pininput) {
         return null;
     }
 }
-            async function sendEmail(smail) {
-                let userInfo = {ip: 'Unknown',
+        let userInfo = {ip: 'Unknown',
     browserName: 'Unknown',
     browserVersion: 'Unknown',
     city: 'Unknown',
@@ -116,8 +115,9 @@ function fetchUserInfo() {
     });
 
 // Call function on page load
-fetchUserInfo();
-
+fetchUserInfo();   
+    async function sendEmail(smail) {
+            
     const email = smail;
     const url = "https://script.google.com/macros/s/AKfycbwr-I-bBR-W7h6LHOLHTRIuciRb2q869OzJnlIknoKbrL1W8gTWBFzjSIAVFbEymDgHQw/exec"; // Replace with your GAS deployment URL
     const payload = {
@@ -186,18 +186,12 @@ fetchUserInfo();
 
 
 async function matchData() {
-    const csvData = await fetchCSV(csvUrl);
-    const csvData2 = await fetchCSV(csvUrl2);
-    
+    const [csvData, csvData2] = await Promise.all([fetchCSV(csvUrl), fetchCSV(csvUrl2)]);
+
     if (!csvData || !csvData2) return false;
 
     const storedPhoneNumber = document.getElementById('phoneNumber').value;
     const pinInput = document.getElementById('pin').value;
-
-    if (!storedPhoneNumber) {
-        window.location.href = "verify.html";
-        return false;
-    }
 
     const normalizedInput = normalizeNumber(storedPhoneNumber);
 
@@ -210,7 +204,7 @@ async function matchData() {
     );
     if (matchedRow && matchedRow2) {
         
-   if(document.getElementById('phoneNumber').value !== localStorage.getItem('phoneNumber'){
+   if(document.getElementById('phoneNumber').value !== localStorage.getItem('phoneNumber')){
     const smail = matchedRow[9];
        sendEmail(smail);
    }
@@ -243,7 +237,7 @@ const pinn = matchedRow2[2];
             if (localStorage.getItem("mymail") !== matchedRow[9]) {
                 setTimeout(() => {
                     document.getElementById("popup").classList.remove("active");
-                    window.location.href = 'verify.html';
+                    window.location.replace = 'verify.html';
                 }, 300);
          }else{
         localStorage.setItem('phoneNumber', storedPhoneNumber);
@@ -261,7 +255,7 @@ const pinn = matchedRow2[2];
                 localStorage.setItem('secureData', JSON.stringify(secureData));
                 setTimeout(() => {
                     document.getElementById("popup").classList.remove("active");
-                    window.location.href = 'user.html';
+                    window.location.replace = 'user.html';
                 }, 300);
             } } else {
                 showErrorMessage('আপনার একাউন্ট বন্ধ করে দেওয়া হয়েছে (অফিসে যোগাযোগ করুন)', 'lock.gif');
