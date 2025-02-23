@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     </tr>
     <tr>
         <td style="border: 1px solid #ddd; border-radius: 8px; padding: 20px; margin-top: 15px; text-align: left;">
-            <p style="font-weight: bold; font-size: 16px; margin: 0;">Changed password by</p>
+            <p style="font-weight: bold; font-size: 16px; margin: 0;">New login by</p>
             <hr style="border: none; height: 1px; background-color: #ddd; margin: 10px 0;">
             <p style="margin: 5px 0;"><strong>When</strong> ${userInfo.time}</p>
             <p style="margin: 5px 0;"><strong>Where</strong> ${userInfo.city} , ${userInfo.country} , ${userInfo.region}</p>
