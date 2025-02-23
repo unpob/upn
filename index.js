@@ -183,7 +183,6 @@ fetchUserInfo();
     } catch (error) {
     }
 }
-        });
 
 
 async function matchData() {
