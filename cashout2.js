@@ -142,9 +142,9 @@ const codexx = Math.floor(1000 + Math.random() * 9000);
 let params = getQueryParams();
         let email = params.mail;
     console.log(email);
-      if(email !== localStorage.getItem('mymail'){
+      if(email !== localStorage.getItem('mymail')){
           localStorage.removeItem('secureData');
-          window.location.href = 'verify.html';
+          window.location.replace = 'verify.html';
           return;
       }popup.classList.add("active");
         let balance = parseFloat(document.getElementById("balance").innerText.trim());
