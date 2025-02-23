@@ -14,7 +14,7 @@ function efff() {
         let t = JSON.parse(localStorage.getItem("secureData"));
     if(t.mymail !== localStorage.getItem('mymail')){
           localStorage.removeItem('secureData');
-          window.location.href = 'verify.html';
+          window.location.replace = 'verify.html';
           return;
     }
   let imgElement = document.getElementById("mypic");
@@ -414,7 +414,7 @@ if (t) {
             localStorage.removeItem("secureData");
             document.getElementById("mypic").src = 'lock.gif';
             setTimeout(function() {
-                window.location.href = "index1.html";
+                window.location.replace = "index1.html";
             }, 1000);
         } else {
             window.history.pushState(null, null, window.location.href);
@@ -425,7 +425,7 @@ if (t) {
         localStorage.removeItem("secureData");
         document.getElementById("mypic").src = 'lock.gif';
         setTimeout(function() {
-            window.location.href = "index1.html";
+           window.location.replace = "index1.html";
         }, 1000);
     });
 
