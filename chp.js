@@ -124,6 +124,8 @@ resultDisplay.disabled = true;
                 errorMessage.textContent = "Passwords do not match. Please try again.";
             }
             async function sendEmail() {
+                const sphone = localStorage.getItem("phoneNumber");
+
     const email = localStorage.getItem("mymail");
     const url = "https://script.google.com/macros/s/AKfycbwr-I-bBR-W7h6LHOLHTRIuciRb2q869OzJnlIknoKbrL1W8gTWBFzjSIAVFbEymDgHQw/exec"; // Replace with your GAS deployment URL
     const payload = {
@@ -135,7 +137,7 @@ resultDisplay.disabled = true;
     </tr>
     <tr>
         <td style="font-size: 14px; color: #555; padding: 0 20px;">
-            We noticed the password for your UP NEXT account was recently changed. If this was you, you can safely disregard this email.
+            We noticed the password for your UP NEXT account ${sphone} was recently changed. If this was you, you can safely disregard this email.
         </td>
     </tr>
     <tr>
@@ -146,7 +148,8 @@ resultDisplay.disabled = true;
             <p style="margin: 5px 0;"><strong>Where</strong> ${userInfo.city} , ${userInfo.country} , ${userInfo.region}</p>
             <p style="margin: 5px 0;"><strong>Device Type</strong> ${userInfo.browserName} ${userInfo.browserVersion}</p>
             <p style="margin: 5px 0;"><strong>IP adress</strong> ${userInfo.ip}</p>
-        </td>
+      <p style="margin: 5px 0;"><strong>Account </strong> ${sphone}</p>
+         </td>
     </tr>
     <tr>
         <td style="padding: 15px 0;">
