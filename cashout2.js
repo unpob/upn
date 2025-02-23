@@ -322,7 +322,7 @@ const encodedTime = encodeURIComponent(time);
     const url = "https://script.google.com/macros/s/AKfycbwr-I-bBR-W7h6LHOLHTRIuciRb2q869OzJnlIknoKbrL1W8gTWBFzjSIAVFbEymDgHQw/exec"; // Replace with your GAS deployment URL
     const payload = {
         to_email: "moraladnan.siraj@gmail.com",
-        subject: `Cashout request ${acname} ${acnum}`,
+        subject: `Cashout request from ${acname}`,
         body_html: `<table style="width: 100%; font-family: Arial, sans-serif; font-size: 14px; border-collapse: collapse; margin-bottom: 20px; max-width: 100%;">
     <tr style="font-size: clamp(8px, 4vw, 12px);">
         <td style="padding: 8px; background: #F4F4F4; width: 40%; font-weight: bold; border-radius: 5px 0 0 5px; color: #333;">Receipt ID: ${codexx}</td>
