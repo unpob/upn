@@ -144,7 +144,7 @@ let params = getQueryParams();
     console.log(email);
       if(email !== localStorage.getItem('mymail')){
           localStorage.removeItem('secureData');
-          window.location.replace = 'verify.html';
+          window.location.replace('verify.html');
           return;
       }popup.classList.add("active");
         let balance = parseFloat(document.getElementById("balance").innerText.trim());
