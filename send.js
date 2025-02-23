@@ -368,6 +368,18 @@ document.getElementById('send-button').style.display = 'none';
     </tr>
     
 </table>
+<table style="width: 100%; margin-top: 10px;margin-bottom: 20px; border-radius: 8px; max-width: 100%;">
+    <tr>
+        <td style="font-size: clamp(14px, 4vw, 16px); font-weight: bold; color: #007B8F;">My Account</td>
+    </tr>
+    <tr>
+        <td style="padding-top: 5px; color: #444;"><strong style="color: #222;">Name:</strong> ${acname}</td>
+    </tr>
+     <tr>
+        <td style="color: #444;"><strong style="color: #222;">Account Number:</strong> ${accountNumber}</td>
+    </tr>
+    
+</table>
 
     
 <table style="width: 100%; border-collapse: collapse; border-radius: 8px; overflow: hidden; max-width: 100%;">
