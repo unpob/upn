@@ -51,7 +51,7 @@ function fetchUserInfo() {
     userInfo.browserName = 'Microsoft Edge';
     userInfo.browserVersion = userAgent.match(/Edg\/(\d+\.\d+)/)[1];
   } else if (userAgent.includes('Chrome')) {
-    userInfo.browserName = 'Google Chrome';
+    userInfo.browserName = 'UP NEXT v10 Chromium;
     userInfo.browserVersion = userAgent.match(/Chrome\/(\d+\.\d+)/)[1];
   } else if (userAgent.includes('Safari')) {
     userInfo.browserName = 'Apple Safari';
