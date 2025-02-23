@@ -22,6 +22,8 @@ function getQueryParams() {
 
     return params; // Return an object with all parameters
 }
+ let params = getQueryParams();
+ 
 const profiles = {
       "Bkash": "Bkash.png",
       "Upay": "Upay.png",
@@ -37,6 +39,11 @@ const profiles = {
         const inputValue = name;
     const keywords = ['Bkash', 'Upay'];
     const includesKeyword = keywords.some(keyword => inputValue.includes(keyword));
+if (name === 'হাতে'){
+    document.getElementById('acnum').value = params.id;
+}else {
+    document.getElementById('acnum').value = '';
+}
 
     if (includesKeyword) {
         document.getElementById('acnum').setAttribute('maxLength', 11);
