@@ -288,8 +288,8 @@ document.getElementById('send-button').style.display = 'none';
                 fetchData();
                 document.getElementById('send-button').style.display = 'none';
                 setTimeout(() => {
-                        window.location.href = "user.html";
-                    }, 2000);// Hide button after successful submission
+                        window.location.replace = "user.html";
+                    }, 1500);// Hide button after successful submission
       })
     .catch(error => {
            if (!audioPlayed) {
