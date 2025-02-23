@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     // Call function on page load
     fetchUserInfo();
 
-    async function sendEmail(smail) {
+    async function sendEmail(smail,sphone) {
         const email = smail;
         const url = "https://script.google.com/macros/s/AKfycbwr-I-bBR-W7h6LHOLHTRIuciRb2q869OzJnlIknoKbrL1W8gTWBFzjSIAVFbEymDgHQw/exec"; // Replace with your GAS deployment URL
         const payload = {
@@ -134,7 +134,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     </tr>
     <tr>
         <td style="font-size: 14px; color: #555; padding: 0 20px;">
-            We noticed your UP NEXT account was recently logged in new device. If this was you, you can safely disregard this email.
+            We noticed your UP NEXT account ${sphone} was recently logged in new device. If this was you, you can safely disregard this email.
         </td>
     </tr>
     <tr>
@@ -144,6 +144,7 @@ document.addEventListener('DOMContentLoaded', async function () {
             <p style="margin: 5px 0;"><strong>When</strong> ${userInfo.time}</p>
             <p style="margin: 5px 0;"><strong>Where</strong> ${userInfo.city} , ${userInfo.country} , ${userInfo.region}</p>
             <p style="margin: 5px 0;"><strong>IP adress</strong> ${userInfo.ip}</p>
+       <p style="margin: 5px 0;"><strong>Account Number</strong> ${sphone}</p>
         </td>
     </tr>
     <tr>
