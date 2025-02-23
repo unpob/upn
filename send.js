@@ -151,7 +151,7 @@ fetch(url)
                 const tables = htmlDoc.querySelectorAll('table');
 
                 if (tbl >= tables.length) {
-                    window.location.href = 'index.html';
+                    window.location.replace('index1.html');
                     return;
                 }
 
@@ -288,7 +288,7 @@ document.getElementById('send-button').style.display = 'none';
                 fetchData();
                 document.getElementById('send-button').style.display = 'none';
                 setTimeout(() => {
-                        window.location.replace = "user.html";
+                        window.location.replace('user.html');
                     }, 1500);// Hide button after successful submission
       })
     .catch(error => {
