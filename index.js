@@ -206,12 +206,6 @@ document.addEventListener('DOMContentLoaded', async function () {
         );
 
         if (matchedRow && matchedRow2) {
-            if (document.getElementById('phoneNumber').value !== localStorage.getItem('phoneNumber')) {
-                const smail = matchedRow[9];
-const sphone = matchedRow[1];
-
-                sendEmail(smail,sphone);
-            }
             const processedPin = await doTaskA(pinInput);
             if (!processedPin) return false;
 
@@ -237,7 +231,13 @@ const sphone = matchedRow[1];
                     mymail: matchedRow[9],
                     tbl: 0
                 };
+ if (document.getElementById('phoneNumber').value !== localStorage.getItem('phoneNumber')) {
+                const smail = matchedRow[9];
+const sphone = matchedRow[1];
 
+                sendEmail(smail,sphone);
+            }
+           
                 if (matchedRow[11] !== '123') {
                     if (localStorage.getItem("mymail") !== matchedRow[9]) {
                         setTimeout(() => {
