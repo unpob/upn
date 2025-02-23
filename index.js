@@ -241,7 +241,6 @@ if (phoneNInput !== storedPNumber || !emailSentFlags) {
 
     sendEmail(smail, sphone);
     
-    localStorage.setItem('phoneNumber', phoneNumberInput); // Store phone number
     localStorage.setItem('emailSents', 'true'); // Set email sent flag
 }           
                 if (matchedRow[11] !== '123') {
