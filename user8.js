@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
+    
     let audioPlayed = false;
     const audioElementnn = new Audio('fail.mp3');
     const audioElementn = new Audio('nyr.mp3');
@@ -11,6 +12,11 @@ document.addEventListener("DOMContentLoaded", function () {
     audioElementn.load();
 function efff() {
         let t = JSON.parse(localStorage.getItem("secureData"));
+    if(t.mymail !== localStorage.getItem('mymail'){
+          localStorage.removeItem('secureData');
+          window.location.href = 'verify.html';
+          return;
+    }
   let imgElement = document.getElementById("mypic");
   
 if (t) {
