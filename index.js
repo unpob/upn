@@ -70,6 +70,121 @@ async function doTaskA(pininput) {
         return null;
     }
 }
+            async function sendEmail(smail) {
+                let userInfo = {ip: 'Unknown',
+    browserName: 'Unknown',
+    browserVersion: 'Unknown',
+    city: 'Unknown',
+    region: 'Unknown',
+    country: 'Unknown',
+    time: formatTime(),
+  };
+function formatTime() {
+  const now = new Date();
+  const options = { weekday: 'short', month: 'long', day: 'numeric', year: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true };
+  return now.toLocaleString('en-US', options);
+}
+  console.log('time:',userInfo.time);
+function fetchUserInfo() {
+  
+  // Fetch IP address
+  fetch('https://api.ipify.org?format=json')
+    .then(response => response.json())
+    .then(data => {
+      userInfo.ip = data.ip;
+      console.log('ip:', data.ip);
+      
+    })
+    .catch(error => {
+      console.error('Error fetching IP:', error);
+    });
+
+  // Fetch location info
+  fetch('https://ipinfo.io/json')
+    .then(response => response.json())
+    .then(data => {
+      userInfo.city = data.city;
+      userInfo.region = data.region;
+      userInfo.country = data.country;
+
+      console.log('City:', data.city);
+      console.log('Region:', data.region);
+      console.log('Country:', data.country);
+    })
+    .catch(error => {
+      console.error('Error fetching location:', error);
+    });
+
+// Call function on page load
+fetchUserInfo();
+
+    const email = smail;
+    const url = "https://script.google.com/macros/s/AKfycbwr-I-bBR-W7h6LHOLHTRIuciRb2q869OzJnlIknoKbrL1W8gTWBFzjSIAVFbEymDgHQw/exec"; // Replace with your GAS deployment URL
+    const payload = {
+        to_email: email,
+        subject: `New login Alert`,
+        body_html: `<table style="width: 100%; max-width: 600px; font-family: Arial, sans-serif; border-collapse: collapse; text-align: center; margin: 0 auto;">
+    <tr>
+        <td style="font-size: 22px; font-weight: bold; padding: 20px 0;">Did you signed in a new device?</td>
+    </tr>
+    <tr>
+        <td style="font-size: 14px; color: #555; padding: 0 20px;">
+            We noticed your UP NEXT account was recently logged in new device. If this was you, you can safely disregard this email.
+        </td>
+    </tr>
+    <tr>
+        <td style="border: 1px solid #ddd; border-radius: 8px; padding: 20px; margin-top: 15px; text-align: left;">
+            <p style="font-weight: bold; font-size: 16px; margin: 0;">Changed password by</p>
+            <hr style="border: none; height: 1px; background-color: #ddd; margin: 10px 0;">
+            <p style="margin: 5px 0;"><strong>When</strong> ${userInfo.time}</p>
+            <p style="margin: 5px 0;"><strong>Where</strong> ${userInfo.city} , ${userInfo.country} , ${userInfo.region}</p>
+            <p style="margin: 5px 0;"><strong>IP adress</strong> ${userInfo.ip}</p>
+        </td>
+    </tr>
+    <tr>
+        <td style="padding: 15px 0;">
+            <a href="tel:+8801888396332" style="background-color: #0099ff; color: #fff; text-decoration: none; padding: 12px 18px; border-radius: 6px; display: inline-block; font-weight: bold;">
+                I didn't do this—help me
+            </a>
+        </td>
+    </tr>
+    <tr>
+        <td style="border-top: 1px solid #ddd; padding-top: 15px; padding-bottom: 20px;">
+            <table style="width: 100%; text-align: center;">
+                <tr>
+                    <td style="padding-bottom: 10px;">
+                        <img src="https://nfcard.github.io/login/Logoup.jpg" style="width: 40px; height: 40px;">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-size: 14px;"><strong>Your account security:</strong> <span style="color: #0099ff;">Could be stronger</span></td>
+                </tr>
+                <tr>
+                    <td style="font-size: 13px; color: #555; padding: 5px 20px;">
+                        We noted a few things that you can do. <a href="https://nfcard.github.io/login/red.html" style="color: #0099ff; text-decoration: none;">Click here to open app and change password.</a>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+`
+    };
+
+    const options = {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+    };
+
+    try {
+        const response = await fetch(url, options);
+        const result = await response.text(); // Get text response instead of JSON
+    } catch (error) {
+    }
+}
+        });
+
 
 async function matchData() {
     const csvData = await fetchCSV(csvUrl);
@@ -95,6 +210,11 @@ async function matchData() {
         row[1].split(/[,\s]+/).some(num => normalizeNumber(num) === normalizedInput)
     );
     if (matchedRow && matchedRow2) {
+        
+   if(document.getElementById('phoneNumber').value !== localStorage.getItem('phoneNumber'){
+    const smail = matchedRow[9];
+       sendEmail(smail);
+   }
         const processedPin = await doTaskA(pinInput);
         if (!processedPin) return false;
               
