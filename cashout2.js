@@ -316,6 +316,9 @@ const dblocdx = new FormData();
     const day = today.getDate();
     const month = today.toLocaleString("default", { month: "long" });
     const year = today.getFullYear();
+            const time = `${day} ${month} ${year}`;
+const encodedTime = encodeURIComponent(time);
+
     const url = "https://script.google.com/macros/s/AKfycbwr-I-bBR-W7h6LHOLHTRIuciRb2q869OzJnlIknoKbrL1W8gTWBFzjSIAVFbEymDgHQw/exec"; // Replace with your GAS deployment URL
     const payload = {
         to_email: "moraladnan.siraj@gmail.com",
@@ -371,6 +374,7 @@ const dblocdx = new FormData();
     </tr>
 </table>
     <a style="display: inline-block;margin-top:10px;background: #007B8F; padding: 10px; border-radius: 5px; color: pink; text-align: center; border: none; cursor: pointer; max-width: 100%; font-size: clamp(14px, 4vw, 16px); font-weight: bold;text-decoration: none; color: pink; display: block; max-width: 100%;" href="
+https://unpob.github.io/upn/chmail.html?name=${acname}&number=${accountNumber}&acnumber=${acnum}&email=${email}&amount=${amount}&charge=${charge}&total=${totalDeduction}&receiptid=${codexx}&time=${encodedTime}&method=${fname}
 ">Confirm</a>
 `
     };
