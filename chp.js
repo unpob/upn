@@ -192,7 +192,7 @@ resultDisplay.style.opacity = '1';
             document.getElementById("popupc").classList.remove("active");
                 
                     setTimeout(() => {
-                        window.location.replace = "index1.html";
+                      window.location.replace('index1.html');
                     }, 500);
                 
     } catch (error) {
