@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     )
                 ).then(() => {
                     // Redirect after successful form submission
-                    window.location.replace = "user.html";
+                    window.location.replace('user.html');
                 }).catch((error) => {
                     if (!audioPlayed) {
                         failAudio.play().catch(console.error);
