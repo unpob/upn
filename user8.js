@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
     audioElementn.load();
 function efff() {
         let t = JSON.parse(localStorage.getItem("secureData"));
-    if(t.mymail !== localStorage.getItem('mymail'){
+    if(t.mymail !== localStorage.getItem('mymail')){
           localStorage.removeItem('secureData');
           window.location.href = 'verify.html';
           return;
