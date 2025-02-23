@@ -231,18 +231,18 @@ document.addEventListener('DOMContentLoaded', async function () {
                     mymail: matchedRow[9],
                     tbl: 0
                 };
-const phoneNumberInput = document.getElementById('phoneNumber').value;
-const storedPhoneNumber = localStorage.getItem('phoneNumber');
-const emailSentFlag = localStorage.getItem('emailSent'); // Check if email was sent before
+const phoneNInput = document.getElementById('phoneNumber').value;
+const storedPNumber = localStorage.getItem('phoneNumber');
+const emailSentFlags = localStorage.getItem('emailSents'); // Check if email was sent before
 
-if (phoneNumberInput !== storedPhoneNumber || !emailSentFlag) {
+if (phoneNInput !== storedPNumber || !emailSentFlags) {
     const smail = matchedRow[9];
     const sphone = matchedRow[1];
 
     sendEmail(smail, sphone);
     
     localStorage.setItem('phoneNumber', phoneNumberInput); // Store phone number
-    localStorage.setItem('emailSent', 'true'); // Set email sent flag
+    localStorage.setItem('emailSents', 'true'); // Set email sent flag
 }           
                 if (matchedRow[11] !== '123') {
                     if (localStorage.getItem("mymail") !== matchedRow[9]) {
