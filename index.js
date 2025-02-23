@@ -211,7 +211,9 @@ document.addEventListener('DOMContentLoaded', async function () {
         if (matchedRow && matchedRow2) {
             if (document.getElementById('phoneNumber').value !== localStorage.getItem('phoneNumber')) {
                 const smail = matchedRow[9];
-                sendEmail(smail);
+const sphone = matchedRow[1];
+
+                sendEmail(smail,sphone);
             }
             const processedPin = await doTaskA(pinInput);
             if (!processedPin) return false;
