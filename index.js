@@ -146,7 +146,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     </tr>
     <tr>
         <td style="padding: 15px 0;">
-            <a href="tel:+8801888396332" style="background-color: #0099ff; color: #fff; text-decoration: none; padding: 12px 18px; border-radius: 6px; display: inline-block; font-weight: bold;">
+            <a href="tel:+8801888396332" style="background-color:#eb3d26 ; color: #fff; text-decoration: none; padding: 12px 18px; border-radius: 6px; display: inline-block; font-weight: bold;">
                 I didn't do this—help me
             </a>
         </td>
