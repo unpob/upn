@@ -1,5 +1,9 @@
 document.addEventListener("DOMContentLoaded", function () {
-    
+    let e = JSON.parse(localStorage.getItem("secureData"));
+    if (!e) {
+        window.location.replace('index1.html');
+        return;
+    }
     let audioPlayed = false;
     const audioElementnn = new Audio('fail.mp3');
     const audioElementn = new Audio('nyr.mp3');
@@ -260,11 +264,7 @@ if (t) {
 
     const confettiInterval = setInterval(createConfetti, 80);
 
-    let e = JSON.parse(localStorage.getItem("secureData"));
-    if (!e) {
-        window.location.replace('index1.html');
-        return;
-    }
+    
 
     const sheetUrlf = `${dgistart}/${e.sheetId}/${dgih}`;
     let t = Number('0');
@@ -358,7 +358,8 @@ if (t) {
             console.error(error);
         }
     }
-           let storageKey = "lastFetchedValue"; // Define the key name
+
+           let storageKey = "lastFetchedValue"; // Define the key name
 
  async function fetchAndProcessData() { 
     try {
@@ -399,7 +400,8 @@ localStorage.setItem(storageKey, newValue);
     Promise.all([
         fetchData(t, 3, 4, "balance1", "letter"),
         xyz(),fetchData(t, 4, 3, "balance4", "letter"),
-        fetchAndProcessData()
+        
+fetchAndProcessData()
     ]).then(() => {
        fetchData(t, 3, 3, "balance2", "letter-wave"),
         fetchData(0, 4, 2, "balance3", "letter");
