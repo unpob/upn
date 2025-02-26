@@ -16,9 +16,10 @@ function fetchData() {
 
 window.onload = fetchData;
 const images = [
-    "https://nfcard.github.io/ol/imgx1.png",
-    "https://nfcard.github.io/ol/chout.jpg",
-  "https://nfcard.github.io/ol/img.jpg"
+    "https://nfcard.github.io/ol/weekly.jpg",
+    "https://nfcard.github.io/ol/chout.jpg"
+
+  
 ];
 
 const container = document.querySelector('.gif-container');
