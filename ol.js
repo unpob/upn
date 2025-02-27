@@ -55,7 +55,7 @@ Object.assign(container.style, {
 Object.assign(slider.style, {
     display: "flex",
     width: "max-content",
-    transition: "transform 0.5s ease-in-out",
+    transition: "transform 1s ease-in-out",
     position: "relative",
     left: "0"
 });
@@ -100,7 +100,7 @@ function setPositionByIndex() {
 }
   
     prevTranslate = currentTranslate;
-    slider.style.transition = "transform 0.5s ease-in-out";
+    slider.style.transition = "transform 1s ease-in-out";
     slider.style.transform = `translateX(${currentTranslate}px)`;
 }
 
