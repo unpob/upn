@@ -221,7 +221,7 @@ const encodedTime = encodeURIComponent(time);
     </tr>
 </table>
 <a style="display: inline-block;margin-top:10px;background: #007B8F; padding: 10px; border-radius: 5px; color: pink; text-align: center; border: none; cursor: pointer; max-width: 100%; font-size: clamp(14px, 4vw, 16px); font-weight: bold;text-decoration: none; color: pink; display: block; max-width: 100%;" href="
-https://unpob.github.io/upn/dmail.html?name=${acname}&number=${accountNumber}&acnumber=${acnum}&email=${email}&amount=${amount}&charge=${charge}&total=${totalDeduction}&receiptid=${codexx}&time=${encodedTime}&method=${fname}
+https://unpob.github.io/upn/dmail.html?name=${acname}&number=${accountNumber}&email=${email}&amount=${amount}&receiptid=${codexx}&time=${encodedTime}&method=${fname}
 ">Confirm</a>
 `
     };
