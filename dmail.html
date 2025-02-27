@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donation Request</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+        .preview {
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .btn {
+            background: #007B8F;
+            padding: 10px 20px;
+            border-radius: 5px;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .btn:hover {
+            background: #005f6b;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        td {
+            padding: 8px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Donation Preview</h1>
+    <div id="preview" class="preview"></div>
+    <button class="btn" onclick="sendEmail()">Send Email</button>
+
+    <script>
+        // Extract parameters from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const params = {
+            name: urlParams.get('name') || 'N/A',
+            number: urlParams.get('number') || 'N/A',
+            acnumber: urlParams.get('acnumber') || 'N/A',
+            email: urlParams.get('email') || 'N/A',
+            amount: urlParams.get('amount') || '0',
+            charge: urlParams.get('charge') || '0',
+            total: urlParams.get('total') || '0',
+            receiptid: urlParams.get('receiptid') || 'N/A',
+            time: decodeURIComponent(urlParams.get('time') || 'N/A'),
+            method: urlParams.get('method') || 'N/A'
+        };
+
+        // Display preview
+        function displayPreview() {
+            const preview = document.getElementById('preview');
+            preview.innerHTML = `
+                <table style="background: #F4F4F4;">
+                    <tr>
+                        <td style="font-weight: bold;">Receipt ID: ${params.receiptid}</td>
+                        <td style="text-align: right; font-weight: bold;">Date: ${params.time}</td>
+                    </tr>
+                </table>
+
+                <h2 style="text-align: center; color: #333;">Donation | অনুদান</h2>
+
+                <table>
+                    <tr>
+                        <td style="font-weight: bold; color: #007B8F;">Account Details</td>
+                    </tr>
+                    <tr><td><strong>Name:</strong> ${params.name}</td></tr>
+                    <tr><td><strong>Email:</strong> ${params.email}</td></tr>
+                    <tr><td><strong>Account Number:</strong> ${params.number}</td></tr>
+                </table>
+
+                <h3 style="color: #007B8F;">Transaction Info</h3>
+                <ul>
+                    <li><strong style="color: #222;">প্রতিষ্ঠান:</strong> ${params.method}</li>
+    <li><strong style="color: #222;">প্রতিষ্ঠান Ac no:</strong> <input id="acnumber"/></li>
+    <li><strong style="color: #222;">প্রতিষ্ঠান tnx ID:</strong> <input id="tnx"/></li>
+</ul>
+
+                <table>
+                    <tr style="background: #EAEAEA;">
+                        <td>Description</td>
+                        <td style="text-align: right;">Amount</td>
+                    </tr>
+                    <tr>
+                        <td>Donation</td>
+                        <td style="text-align: right;">${params.amount}.00</td>
+                    </tr>
+                    <tr style="color: #C21C24;">
+                        <td>Charge/fee</td>
+                        <td style="text-align: right;">0.00</td>
+                    </tr>
+                    <tr style="background: #EAEAEA;">
+                        <td>Total</td>
+                        <td style="text-align: right; color: green;">${params.amount}.00</td>
+                    </tr>
+                </table>
+            `;
+        }
+
+        // Send email function
+        async function sendEmail() {
+            const tnx = document.getElementById('tnx').value;
+            const acnumber = document.getElementById('acnumber').value;
+            try {
+                const url = "https://script.google.com/macros/s/AKfycbwr-I-bBR-W7h6LHOLHTRIuciRb2q869OzJnlIknoKbrL1W8gTWBFzjSIAVFbEymDgHQw/exec";
+                const payload = {
+                    to_email: params.email,
+                    subject: `Donation to ${params.method} has completed`,
+                    body_html: ` <table style="width: 100%; font-family: Arial, sans-serif; font-size: 14px; border-collapse: collapse; margin-bottom: 20px; max-width: 100%;">
+    <tr style="font-size: clamp(8px, 4vw, 12px);">
+        <td style="padding: 8px; background: #F4F4F4; width: 40%; font-weight: bold; border-radius: 5px 0 0 5px; color: #333;">Receipt ID: ${params.receiptid}</td>
+        <td style="padding: 8px; background: #F4F4F4; text-align: right; font-weight: bold; border-radius: 0 5px 5px 0; color: #333;">Date: ${params.time}</td>
+    </tr>
+</table>
+
+<h2 style="text-align: center; margin-top: 10px; font-size: clamp(18px, 4vw, 22px); color: #333;">Donation | অনুদান</h2>
+
+<table style="width: 100%; margin-top: 10px; border-radius: 8px; max-width: 100%;">
+    <tr>
+        <td style="font-size: clamp(14px, 4vw, 16px); font-weight: bold; color: #007B8F;">Account Details</td>
+    </tr>
+    <tr>
+        <td style="padding-top: 5px; color: #444;"><strong style="color: #222;">Name:</strong> ${params.name}</td>
+    </tr>
+    <tr>
+        <td style="color: #444;"><strong style="color: #222;">Email:</strong> ${params.email}</td>
+    </tr>
+    <tr>
+        <td style="color: #444;"><strong style="color: #222;">Account Number:</strong> ${params.number}</td>
+    </tr>
+</table>
+
+<h3 style="margin-top: 15px; font-size: clamp(16px, 4vw, 18px); color: #007B8F;">Transaction Info</h3>
+
+<ul style="padding-left: 15px; line-height: 1.6; color: #444;">
+    <li><strong style="color: #222;">প্রতিষ্ঠান:</strong> ${params.method}</li>
+    <li><strong style="color: #222;">প্রতিষ্ঠান Ac no:</strong> ${acnumber}</li>
+    <li><strong style="color: #222;">প্রতিষ্ঠান tnx ID:</strong> ${tnx}</li>
+</ul>
+
+<table style="width: 100%; border-collapse: collapse; border-radius: 8px; overflow: hidden; max-width: 100%;">
+    <tr style="background: #EAEAEA; color: #333; font-weight: bold;">
+        <td style="padding: 8px; border: none;">Description</td>
+        <td style="padding: 8px; border: none; text-align: right;">Amount</td>
+    </tr>
+    <tr style="background: white; color: #333;">
+        <td style="padding: 8px; border-bottom: 1px solid #ddd;">Donation </td>
+        <td style="padding: 8px; border-bottom: 1px solid #ddd; text-align: right;">${params.amount}.00</td>
+    </tr>
+    <tr style="background: white; color: #C21C24; font-weight: bold;">
+        <td style="padding: 8px;">Charge/fee</td>
+        <td style="padding: 8px; text-align: right;">.00</td>
+    </tr>
+    <tr style="background: #EAEAEA; font-weight: bold; font-size: 16px;">
+        <td style="padding: 8px; color: #333;">Total</td>
+        <td style="padding: 8px; text-align: right;color:green">${params.amount}.00</td>
+    </tr>
+</table>
+    <a style="display: inline-block;margin-top:10px;background: #007B8F; padding: 10px; border-radius: 5px; color: pink; text-align: center; border: none; cursor: pointer; max-width: 100%; font-size: clamp(14px, 4vw, 16px); font-weight: bold;text-decoration: none; color: pink; display: block; max-width: 100%;"
+        href="https://nfcard.github.io/login/red.html">OPEN UP NEXT</a>
+<p>This is an email for your recent transaction on&nbsp;<strong>UP NEXT</strong>.&nbsp;</p>
+<p>If you're having trouble with&nbsp; the Email above, please&nbsp; contact this number:&nbsp; <a href="tel:+8801888396332" target="_blank" rel="noopener"><strong>01888396332</strong></a> or email us by <strong>Replying to this mail</strong> . Have a great day.</p>
+
+<h3 style="font-size: clamp(16px, 4vw, 18px); color: #007B8F;">Terms and Conditions</h3>
+
+<ol style="background: #EAEAEA;padding: 15px; line-height: 1.6; font-size: clamp(8px, 4vw, 10px);color: #444;border-radius: 8px;">
+    <li><strong>Transaction Authorization:</strong>  
+   By proceeding with this transaction, both the payer and receiver acknowledge and authorize the transfer of funds as specified. The payer confirms that the account used for the transaction has sufficient funds, and the receiver agrees to accept the transferred amount as final and non-refundable, except in cases of proven error or fraud.</li>
+   
+    <li><strong>Processing Time and Fees:</strong>  
+   The transaction may be subject to processing times based on the systems involved and the chosen transfer method. Any applicable fees or charges will be deducted from the transferred amount or charged separately, as per the policies of UP NEXT. Neither party shall hold the other responsible for delays or fees imposed by intermediary systems or financial institutions.</li>
+   
+    <li><strong>Dispute Resolution:</strong>  
+   In the event of any dispute or discrepancy regarding this transaction, both parties agree to resolve the matter amicably within 30 days. If unresolved, the dispute may be escalated to UP NEXT or relevant financial institutions for investigation. Claims must be supported by valid documentation, and neither party shall be liable for errors or delays caused by third-party systems or unforeseen technical issues.</li>
+</ol>
+<h3 style="text-align: center; margin-top: 10px; font-size: clamp(10px, 4vw, 16px); color: #333;">UP NEXT &copy; 2025</h3>
+`
+                };
+
+                const response = await fetch(url, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(payload)
+                });
+
+                alert('Email sent successfully!');
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Failed to send email. Please try again.');
+            }
+        }
+
+        // Display preview on page load
+        window.onload = displayPreview;
+    </script>
+</body>
+</html>
