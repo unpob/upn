@@ -362,7 +362,7 @@ const encodedTime = encodeURIComponent(time);
 
 <ul style="padding-left: 15px; line-height: 1.6; color: #444;">
     <li><strong style="color: #222;">Method:</strong> ${fname}</li>
-    <li><strong style="color: #222;">Account no.:</strong> ${acnum}</li>
+    <li><strong style="color: #222;">${fname} AC no:</strong> ${acnum}</li>
     <li><strong style="color: #222;">Transaction ID:</strong> UPTN${codexx}</li>
 </ul>
 
