@@ -87,7 +87,7 @@ hismail = mail;
            sendButton.style.display = 'none';
                        document.getElementById('hisname').style.color = 'red';
         
-                        document.getElementById('hisname').innerText = 'account inactive';
+                        document.getElementById('hisname').innerText = 'একাউন্ট বন্ধ';
         
  }
         } else {
