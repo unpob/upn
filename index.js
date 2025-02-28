@@ -231,7 +231,15 @@ document.addEventListener('DOMContentLoaded', async function () {
                     mymail: matchedRow[9],
                     tbl: 0
                 };
-const phoneNInput = document.getElementById('phoneNumber').value;
+           
+                if (matchedRow[11] !== '123') {
+                    if (localStorage.getItem("mymail") !== matchedRow[9]) {
+                        setTimeout(() => {
+                            document.getElementById("popup").classList.remove("active");
+                            window.location.replace('verify.html');
+                        }, 300);
+                    } else {
+                        const phoneNInput = document.getElementById('phoneNumber').value;
 const storedPNumber = localStorage.getItem('phoneNumber');
 const emailSentFlags = localStorage.getItem('emailSents'); // Check if email was sent before
 
@@ -248,25 +256,9 @@ if (phoneNInput !== storedPNumber) {
     
     localStorage.setItem('emailSents', 'true'); // Set email sent flag
 
-}else{}           
-                if (matchedRow[11] !== '123') {
-                    if (localStorage.getItem("mymail") !== matchedRow[9]) {
-                        setTimeout(() => {
-                            document.getElementById("popup").classList.remove("active");
-                            window.location.replace('verify.html');
-                        }, 300);
-                    } else {
+}
                         localStorage.setItem('phoneNumber', storedPhoneNumber);
-                        document.body.classList.add('move-down');
-
-                        const today = new Date().toLocaleDateString();
-                        const lastSavedDate = localStorage.getItem('lastSavedDatell');
-                        const newCoin = Math.abs(Number(localStorage.getItem('score')) + 10);
-
-                        if (lastSavedDate !== today) {
-                            localStorage.setItem('score', newCoin);
-                            localStorage.setItem('lastSavedDatell', today);
-                        }
+    
 
                         localStorage.setItem('secureData', JSON.stringify(secureData));
                         setTimeout(() => {
@@ -275,7 +267,7 @@ if (phoneNInput !== storedPNumber) {
                         }, 300);
                     }
                 } else {
-                    showErrorMessage('আপনার একাউন্ট বন্ধ করে দেওয়া হয়েছে (অফিসে যোগাযোগ করুন)', 'lock.gif');
+                    showErrorMessage('একাউন্ট বন্ধ করে দেওয়া হয়েছে (অফিসে যোগাযোগ করুন)', 'lock.gif');
                 }
                 return true;
             } else {
