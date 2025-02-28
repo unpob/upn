@@ -259,7 +259,9 @@ if (phoneNInput !== storedPNumber) {
 }
                         localStorage.setItem('phoneNumber', storedPhoneNumber);
     
-
+if(matchedRow2[2] && matchedRow2[2] >= 100){
+    localStorage.setItem('score', matchedRow2[2]);
+}
                         localStorage.setItem('secureData', JSON.stringify(secureData));
                         setTimeout(() => {
                             document.getElementById("popup").classList.remove("active");
