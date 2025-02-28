@@ -248,9 +248,14 @@ const dblocdx = new FormData();
 
                 Promise.all([
                     fetch(dbloc1, { method: 'POST', body: dblocd1, mode: 'no-cors' }),
-                    fetch(dblocx, { method: 'POST', body: dblocdx, mode: 'no-cors' }),
                     fetch(dbloc2, { method: 'POST', body: dblocd2, mode: 'no-cors' }),sendEmail(),
-                    fetch(dbloc3, { method: 'POST', body: dblocd3, mode: 'no-cors' })
+                    fetch(dbloc3, { method: 'POST', body: dblocd3, mode: 'no-cors' }),
+                    new Promise((resolve) => {
+        if (charge !== 0) {
+           fetch(dblocx, { method: 'POST', body: dblocdx, mode: 'no-cors' });
+                            }
+        resolve(); // Resolve the promise immediately
+    })
                 ])
                 .then(() => {
                     if(limit <='0'){
