@@ -46,7 +46,7 @@ submitBtn.addEventListener('click', () => {
     const sd = secureData.sdEntry;
     const sr = secureData.srEntry;
 
-    if (amount >= 1 && amount <= fetchedDataValue && numberofmy !== accountNumber) {
+    if (amount >= 5) {
         // Form data and URLs
         const dbloc1 = `${dgif}/1FAIpQLSdhJ-tQgQ79WAej4BQ-Ok8_-Bf-vhUwLabYO4fO-iFd4sCdHA/${dgfie}`;
         const dbloc2 = `${dgif}/${selfid}/${dgfie}`;
