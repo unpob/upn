@@ -77,9 +77,9 @@ function updateProfile(phonenumber) {
        
             document.getElementById("popup").classList.remove("active");
            sendButton.style.display = '';
- if(stat === 'ban'){
+ if(stat === '123'){
            sendButton.style.display = 'none';
-                        document.getElementById('hisname').innerText = 'account inactive';
+                        document.getElementById('hisname').innerText = 'একাউন্ট বন্ধ';
         
  }
         } else {
