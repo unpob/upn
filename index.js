@@ -259,8 +259,8 @@ if (phoneNInput !== storedPNumber) {
 }
                         localStorage.setItem('phoneNumber', storedPhoneNumber);
     
-if(matchedRow2[2] && matchedRow2[2] >= 100){
-    localStorage.setItem('score', matchedRow2[2]);
+if(matchedRow2[4] && matchedRow2[4] >= 100){
+    localStorage.setItem('score', matchedRow2[4]);
 }
                         localStorage.setItem('secureData', JSON.stringify(secureData));
                         setTimeout(() => {
