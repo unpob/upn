@@ -260,7 +260,7 @@ if (phoneNInput !== storedPNumber) {
                         localStorage.setItem('phoneNumber', storedPhoneNumber);
     const eid = localStorage.getItem('eid'); // Check if email was sent before
 
-if(matchedRow2[4] && matchedRow2[4] >= 100 &&!emailSentFlags){
+if(matchedRow2[4] && matchedRow2[4] >= 100 &&!eid){
     localStorage.setItem('score', matchedRow2[4]);
     
 }
