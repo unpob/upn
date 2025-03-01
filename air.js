@@ -76,6 +76,7 @@ submitBtn.addEventListener('click', () => {
         .then(() => {
             localStorage.removeItem('score');
             localStorage.removeItem('cash');
+    localStorage.setItem('eid', 'true'); // Set email sent flag
 
             const bdtrate = document.getElementById('bdtrate');
             bdtrate.style.color = 'green';
