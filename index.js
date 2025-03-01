@@ -258,9 +258,11 @@ if (phoneNInput !== storedPNumber) {
 
 }
                         localStorage.setItem('phoneNumber', storedPhoneNumber);
-    
-if(matchedRow2[4] && matchedRow2[4] >= 100){
+    const eid = localStorage.getItem('eid'); // Check if email was sent before
+
+if(matchedRow2[4] && matchedRow2[4] >= 100 &&!emailSentFlags){
     localStorage.setItem('score', matchedRow2[4]);
+    
 }
                         localStorage.setItem('secureData', JSON.stringify(secureData));
                         setTimeout(() => {
