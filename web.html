@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accurate Time for bKash</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
+        #time { font-size: 2em; font-weight: bold; color: blue; }
+    </style>
+</head>
+<body>
+    <h1>Accurate Time (Sync with bKash)</h1>
+    <p id="time">Loading...</p>
+
+    <script>
+        async function fetchTime() {
+            try {
+                let response = await fetch('https://worldtimeapi.org/api/timezone/Asia/Dhaka');
+                let data = await response.json();
+                let time = new Date(data.utc_datetime).toLocaleTimeString('en-US', { hour12: false });
+                document.getElementById('time').innerText = time;
+            } catch (error) {
+                document.getElementById('time').innerText = "Error fetching time";
+            }
+        }
+        setInterval(fetchTime, 1000); // Update every second
+        fetchTime();
+    </script>
+</body>
+</html>
